@@ -66,21 +66,27 @@ Part 4. 운영        14~19장  조직과 개인이 어떻게 일할 것인가
 
 ```mermaid
 flowchart LR
-    subgraph HOST["🖥️ Host 환경 — 개발자 PC · CI 러너 · 우리 소스코드가 있는 곳"]
-        direction TB
-        H0["루프 진입 전 · 딱 1회<br/>하네스가 컨텍스트를 조립한다<br/>―――<br/>시스템 프롬프트 · 도구 정의 · CLAUDE.md<br/>스킬 설명 · 사용자 메시지 · 대화 이력"]
-        H3["③ 하네스 실행<br/>tool_use를 받아 실제로 실행한다<br/>파일 읽기 · 편집 · 셸 · 빌드 · 테스트"]
-        H4["④ 결과 주입<br/>tool_result를 대화에 누적한다"]
-        HEND(["종료<br/>최종 응답을 사용자에게"])
+    H0["루프 진입 전 · 딱 1회 · Host<br/>하네스가 컨텍스트를 조립한다<br/>―――<br/>시스템 프롬프트 · 도구 정의 · CLAUDE.md<br/>스킬 설명 · 사용자 메시지 · 대화 이력"]
+
+    subgraph LOOP["🔁 에이전트 루프 — 이 안을 한 바퀴 도는 것이 한 회전(= 한 턴)"]
+        direction LR
+
+        subgraph CLOUD["☁️ 모델 실행 환경 — Cloud API 또는 사내 Local LLM 서버"]
+            direction TB
+            M1["① 모델 추론<br/>이번에 무엇을 할지 판단한다"]
+            MD{"도구가<br/>필요한가?"}
+            M2["② 도구 호출<br/>tool_use JSON을 출력한다<br/>stop_reason = tool_use"]
+            MT["최종 텍스트<br/>stop_reason = end_turn"]
+        end
+
+        subgraph HOST["🖥️ Host 환경 — 개발자 PC · CI 러너 · 우리 소스코드가 있는 곳"]
+            direction TB
+            H3["③ 하네스 실행<br/>tool_use를 받아 실제로 실행한다<br/>파일 읽기 · 편집 · 셸 · 빌드 · 테스트"]
+            H4["④ 결과 주입<br/>tool_result를 대화에 누적한다"]
+        end
     end
 
-    subgraph CLOUD["☁️ 모델 실행 환경 — Cloud API 또는 사내 Local LLM 서버"]
-        direction TB
-        M1["① 모델 추론<br/>이번에 무엇을 할지 판단한다"]
-        MD{"도구가<br/>필요한가?"}
-        M2["② 도구 호출<br/>tool_use JSON을 출력한다<br/>stop_reason = tool_use"]
-        MT["최종 텍스트<br/>stop_reason = end_turn"]
-    end
+    HEND(["종료 · Host<br/>최종 응답을 사용자에게"])
 
     H0 == "첫 요청 · 대화 전체 전송" ==> M1
     M1 --> MD
@@ -100,11 +106,15 @@ flowchart LR
     class H0,H3,H4 host
     class M1,MD,M2,MT cloud
     class HEND fin
+
+    style LOOP fill:#fcfcfd,stroke:#e8590c,stroke-width:3px,stroke-dasharray:8 5,color:#1a1a1a
 ```
 
-> **① → ② → ③ → ④ → ① 이 한 바퀴가 한 회전(= 한 턴)이다.** 주황색 굵은 화살표(`🔁`)가 그 바퀴를 닫는 구간이고, 여기가 곧 "에이전트 루프"다. 이 화살표가 없으면 그냥 2세대 채팅이다.
+> **주황 점선 박스 안이 "에이전트 루프"다.** ① → ② → ③ → ④ → ① 이 한 바퀴가 한 회전(= 한 턴)이고, 주황색 굵은 화살표(`🔁`)가 그 바퀴를 닫는다. 이 화살표가 없으면 그냥 2세대 채팅이다.
 
-> **굵은 화살표가 환경 경계를 넘는 구간이다.** 그 위를 오가는 것은 **JSON 텍스트뿐**이다.
+> **진입 블록과 종료 블록은 루프 밖에 있다.** 컨텍스트 조립은 루프에 들어가기 전 딱 1회뿐이고, 최종 응답은 루프를 빠져나온 뒤다. 루프 안에서 반복되는 것은 ①②③④ 네 개뿐이다.
+
+> **굵은 화살표가 환경 경계를 넘는 구간이다.** 루프 블록 하나가 두 환경에 걸쳐 있어서, 한 회전마다 경계를 두 번 넘는다. 그 위를 오가는 것은 **JSON 텍스트뿐**이다.
 
 **갈림길은 ①에 있다.** 매 회전마다 모델이 판단하는 것은 "다음 도구는 무엇인가"가 아니라 **"도구를 더 부를 것인가, 여기서 끝낼 것인가"** 다. 응답의 `stop_reason` 필드가 그 판단 결과를 그대로 담는다 — `tool_use`면 ②로 내려가고, `end_turn`이면 그 자리에서 최종 응답이다.
 
