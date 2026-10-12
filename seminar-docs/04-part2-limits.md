@@ -1,14 +1,10 @@
 # Part 2. HITL이 필요한 이유 ① 네 가지 한계 (8~12장)
 
-> 범위: 8~12장 · 예상 시간: 55분 · 기준 시점: 2026년 10월
-
 > 목적: AI의 한계를 이해해 사람의 개입이 필요한 지점을 파악하고, AI 기반 워크플로를 보완하는 능력과 개발자로서의 역량 방향을 잡는다.
 
 ---
 
 ## 8장. Human in the Loop란
-
-> 예상 시간: 5분
 
 - **핵심 질문**: 사람이 개입한다는 것은 정확히 언제, 무엇을 한다는 뜻인가
 - **도달 목표**: 네 개의 개입 지점을 구분하고, Part 2에서 다룰 네 가지 한계를 미리 안다
@@ -162,7 +158,7 @@ void door_irq_handler(void)
 | 빌드 설정에 따라 달라지는 코드 | `#ifdef`, Yocto의 `bbappend` | 어느 쪽이 실제로 빌드되는지는 소스만 봐서는 모른다 |
 | 코드 밖의 규칙 | "이 콜백은 블로킹하면 안 된다"는 팀의 암묵지 | 어디에도 적혀 있지 않다 |
 
-**테스트도 이런 수정을 통과시킬 수 있다.** 테스트는 에이전트가 보지 못한 연결까지 검사해 주지 않는다. SWE-bench Verified에서 에이전트 도구 세 가지가 낸 패치를 분석한 연구가 있다. 테스트를 통과한 패치의 29.6%(877건 중 260건)가 정답 패치와 다르게 동작했다. 그중 수작업으로 검토한 77건 가운데 22건(28.6%)이 틀린 것으로 판정됐고 51건은 판정할 수 없었다. 논문의 추정으로는 테스트 통과 패치의 11.0%가 틀렸다(출처: [Wang, Pradel, Liu, Are "Solved Issues" in SWE-bench Really Solved Correctly?](https://arxiv.org/abs/2503.15223), ICSE 2026, arXiv v2 2025-09). "테스트 통과"와 "올바른 수정" 사이에는 틈이 있다.
+**테스트도 이런 수정을 통과시킬 수 있다.** 테스트는 에이전트가 보지 못한 연결까지 검사해 주지 않는다. SWE-bench Verified에서 에이전트 도구 세 가지가 낸 패치를 분석한 연구가 있다. 테스트를 통과한 패치의 29.6%(877건 중 260건)가 정답 패치와 다르게 동작했다. 그중 수작업으로 검토한 77건 가운데 22건(28.6%)이 확실히 틀린 것으로 판정됐고, 51건(66.2%)은 **요구사항이 덜 명세돼 있어서 맞는지 틀린지조차 판정할 수 없었다.** 단순히 곱하면 테스트 통과 패치의 약 8.5%가 확실히 틀린 것이다(계산값). 같은 논문은 SWE-bench의 검증 방식 자체에도 틈이 있어 패치의 7.8%가 개발자가 쓴 테스트를 통과하지 못하는데도 정답으로 집계되며, 두 문제를 합치면 보고된 해결률이 6.2%p 부풀려진다고 밝힌다(출처: [Wang, Pradel, Liu, Are "Solved Issues" in SWE-bench Really Solved Correctly?](https://arxiv.org/abs/2503.15223), ICSE 2026, arXiv v2 2025-09). "테스트 통과"와 "올바른 수정" 사이에는 틈이 있다.
 
 ### 9.3 다음 모델이 나오면 해결되는가
 
@@ -536,7 +532,7 @@ static void (* const k_subscribers[])(const sensor_evt_t *evt) = {
 
 ### 11.2 왜 그런가 ①: 정답이 있는 일
 
-먼저 에이전트가 잘하는 쪽이다. 10.2절에서 본 자동 채점(RLVR)이 그 이유다. Chain-of-Thought 연구로 알려진 Jason Wei는 이 관계를 한 문장으로 정리하고 Verifier's Rule이라고 불렀다.
+먼저 에이전트가 잘하는 쪽이다. 10.2절에서 본 자동 채점(RLVR)이 그 이유다. Chain-of-Thought 연구로 알려진 Jason Wei는 이 관계를 한 문장으로 정리하고 Verifier's Rule이라고 불렀다(글 제목과 주소에는 "verifier's law"로 적혀 있고 본문에서는 "verifier's rule"이라고 쓴다. 찾아볼 때는 둘 다 같은 것이다).
 
 > "The ease of training AI to solve a task is proportional to how verifiable the task is. All tasks that are possible to solve and easy to verify will be solved by AI."
 > (AI에게 어떤 과제를 가르치기 쉬운 정도는 그 과제가 얼마나 검증 가능한가에 비례한다. 풀 수 있고 검증하기 쉬운 과제는 모두 AI가 풀게 된다.)

@@ -24,7 +24,7 @@
 
 ## 2. 시험은 세 종류만 알면 된다
 
-환각을 재는 시험은 많지만, **"모델이 어떤 상황에서 답하는가"**에 따라 세 종류로 나뉩니다. 이 문서는 이 세 가지 결과만 사용합니다.
+환각을 재는 시험은 많지만, **"모델이 어떤 상황에서 답하는가"** 에 따라 세 종류로 나뉩니다. 이 문서는 이 세 가지 결과만 사용합니다.
 
 ```mermaid
 %%{init: {"theme": "base", "themeVariables": {"background": "#ffffff", "fontSize": "15px", "primaryColor": "#eaf3fc", "primaryTextColor": "#111111", "primaryBorderColor": "#1f66c2", "secondaryColor": "#fdeee6", "secondaryTextColor": "#111111", "tertiaryColor": "#f3f2ee", "tertiaryTextColor": "#111111", "lineColor": "#333333", "textColor": "#111111", "titleColor": "#111111", "mainBkg": "#eaf3fc", "nodeBorder": "#1f66c2", "nodeTextColor": "#111111", "clusterBkg": "#f5f8fc", "clusterBorder": "#7a9cc6", "edgeLabelBackground": "#ffffff", "actorBkg": "#eaf3fc", "actorBorder": "#1f66c2", "actorTextColor": "#111111", "actorLineColor": "#555555", "signalColor": "#222222", "signalTextColor": "#111111", "labelTextColor": "#111111", "loopTextColor": "#111111", "noteBkgColor": "#fff3cd", "noteBorderColor": "#b8860b", "noteTextColor": "#111111", "sequenceNumberColor": "#ffffff", "pie1": "#13895f", "pie2": "#d9531e", "pie3": "#7a7974", "pieOpacity": "1", "pieTitleTextColor": "#111111", "pieSectionTextColor": "#ffffff", "pieLegendTextColor": "#111111", "pieStrokeColor": "#ffffff", "pieOuterStrokeColor": "#ffffff", "quadrant1Fill": "#fbe3d8", "quadrant2Fill": "#fdf0e8", "quadrant3Fill": "#eef2f7", "quadrant4Fill": "#dcf1e6", "quadrant1TextFill": "#111111", "quadrant2TextFill": "#111111", "quadrant3TextFill": "#111111", "quadrant4TextFill": "#111111", "quadrantPointFill": "#1f66c2", "quadrantPointTextFill": "#111111", "quadrantXAxisTextFill": "#111111", "quadrantYAxisTextFill": "#111111", "quadrantTitleFill": "#111111", "quadrantInternalBorderStrokeFill": "#666666", "quadrantExternalBorderStrokeFill": "#666666", "xyChart": {"backgroundColor": "#ffffff", "titleColor": "#111111", "xAxisLabelColor": "#222222", "xAxisTitleColor": "#222222", "xAxisTickColor": "#555555", "xAxisLineColor": "#555555", "yAxisLabelColor": "#222222", "yAxisTitleColor": "#222222", "yAxisTickColor": "#555555", "yAxisLineColor": "#555555", "plotColorPalette": "#1f66c2, #d9531e, #13895f"}}}}%%
@@ -60,14 +60,14 @@ flowchart LR
 | ① SimpleQA | 기억으로 답함 (어려운 질문) | 61.8% | `████████████▎` |
 | ② Vectara | 문서를 주고 요약 | 9.6% | `█▉` |
 
-답이 눈앞에 있으면 환각이 6분의 1로 줄어듭니다. 하지만 2026년 최신 모델도 문서 요약에서 **7~12%**는 원문에 없는 내용을 섞습니다(GPT-5.5 9.3%, Claude Opus 4.7 12.0%, Gemini 3.1 Pro 10.4%). 문서가 길고 전문적일수록 더 높아져, 같은 GPT-4o가 짧은 뉴스에서는 1.5%였습니다.
+답이 눈앞에 있으면 환각이 6분의 1로 줄어듭니다. 하지만 2026년 최신 모델도 문서 요약에서 **7~12%** 는 원문에 없는 내용을 섞습니다(GPT-5.5 9.3%, Claude Opus 4.7 12.0%, Gemini 3.1 Pro 10.4%). 문서가 길고 전문적일수록 더 높아져, 같은 GPT-4o가 짧은 뉴스에서는 1.5%였습니다.
 
 ### 발견 2. 새 모델이 나와도 꾸준히 줄지 않았다
 
 | 시험 | 관찰 |
 | --- | --- |
 | ① SimpleQA (OpenAI 자체 측정) | o1 **44%** → 후속 추론 모델 o3 **51%**, o4-mini **79%**. 새 모델이 더 높았음 |
-| ② Vectara | 2024~2026년 출시 모델이 출시 순서와 무관하게 **5~23%**에 흩어짐. GPT-4.1(2025.04) 5.6% → GPT-5 high(2025.08) 15.1%, Claude Opus 4(2025.05) 12.0% → Opus 4.7(2026.04) 12.0% |
+| ② Vectara | 2024~2026년 출시 모델이 출시 순서와 무관하게 **5~23%** 에 흩어짐. GPT-4.1(2025.04) 5.6% → GPT-5 high(2025.08) 15.1%, Claude Opus 4(2025.05) 12.0% → Opus 4.7(2026.04) 12.0% |
 
 OpenAI는 o3가 "주장을 더 많이 하면서 맞는 주장과 틀린 주장이 함께 늘었다"고 설명했습니다([Simon Willison 정리](https://simonwillison.net/2025/Apr/21/openai-o3-and-o4-mini-system-card/)). 더 똑똑해졌다고 환각이 저절로 줄지는 않았습니다.
 
@@ -80,7 +80,7 @@ OpenAI는 o3가 "주장을 더 많이 하면서 맞는 주장과 틀린 주장�
 
 두 모델의 정답률은 거의 같습니다. 차이는 모를 때 기권했느냐이고, 그것만으로 오답이 3배 차이 났습니다([OpenAI, 2025](https://openai.com/index/why-language-models-hallucinate/)).
 
-③ AA-Omniscience에서도 같습니다. Gemini 3 Pro → 3.1 Pro는 정답률이 55.8% → 54.9%로 거의 같은데, 모를 때 지어낸 비율은 **91.5% → 50.9%**로 줄었습니다. **환각은 지식의 양보다 "모를 때 멈추는 습관"으로 결정됩니다.**
+③ AA-Omniscience에서도 같습니다. Gemini 3 Pro → 3.1 Pro는 정답률이 55.8% → 54.9%로 거의 같은데, 모를 때 지어낸 비율은 **91.5% → 50.9%** 로 줄었습니다. **환각은 지식의 양보다 "모를 때 멈추는 습관"으로 결정됩니다.**
 
 ### 발견 4. 정답률 경쟁이 환각을 다시 키운다
 
@@ -120,7 +120,7 @@ OpenAI는 o3가 "주장을 더 많이 하면서 맞는 주장과 틀린 주장�
 
 - **OpenAI**는 가장 크게 개선했습니다. 자체 측정에서도 GPT-6.1 Sol의 사실 오류가 직전 대비 약 32% 줄었습니다([OpenAI](https://openai.com/index/introducing-gpt-6-1-sol/)). 다만 저가형 Luna는 여전히 77%입니다.
 - **Anthropic**은 Opus 5.5를 "가장 정직한 모델"로 소개했지만([Anthropic](https://www.anthropic.com/claude-opus-5-5)), 이 시험에서는 소폭 개선에 그쳤고 Sonnet 5.5는 오히려 올랐습니다.
-- 가장 나은 모델도 모르는 질문의 **47~59%**에서 기권 대신 답을 지어냅니다.
+- 가장 나은 모델도 모르는 질문의 **47~59%** 에서 기권 대신 답을 지어냅니다.
 - Anthropic은 Opus 5.5가 "평가받고 있다고 자주 의심한다"고 밝혔습니다. 공개 수치가 실사용보다 낙관적일 수 있다는 뜻입니다.
 
 ---
@@ -149,7 +149,7 @@ flowchart LR
 | ④ 평가 | 업계 시험에 오답 벌점이 없어 찍는 모델이 유리 |
 | ⑤ 사용 | 한 번 한 말에 맞춰 이어가다 오류가 눈덩이처럼 커짐 |
 
-> 노란 두 단계(③ 강화학습, ④ 평가)는 모두 **"무엇에 점수를 주는가"**의 문제입니다. ③은 학습 중 채점, ④는 완성된 모델의 채점이며, ④의 점수가 다시 ③의 방향을 정합니다.
+> 노란 두 단계(③ 강화학습, ④ 평가)는 모두 **"무엇에 점수를 주는가"** 의 문제입니다. ③은 학습 중 채점, ④는 완성된 모델의 채점이며, ④의 점수가 다시 ③의 방향을 정합니다.
 
 **2026년에도 이 방식을 쓰는가?** 큰 틀(사전학습 → 지도 파인튜닝 → 강화학습)은 그대로이며, 세부 방식이 바뀌었습니다. 각 사는 학습 방법의 개요만 공개하므로 아래는 공개 자료 기준입니다.
 
@@ -164,10 +164,10 @@ flowchart LR
 
 ### ① 사전학습: 모르는 것도 "그럴듯한 다음 말"로 채운다
 
-**왜 "모른다"가 아니라 지어낼까요?** 사용자를 만족시키려고 배운 것이 아니라, **사전학습의 목표 자체가 "다음에 올 가장 그럴듯한 말 맞히기"**이기 때문입니다.
+**왜 "모른다"가 아니라 지어낼까요?** 사용자를 만족시키려고 배운 것이 아니라, **사전학습의 목표 자체가 "다음에 올 가장 그럴듯한 말 맞히기"** 이기 때문입니다.
 
 - 사전학습 단계의 모델은 질문에 답하는 비서가 아니라 **글 이어 쓰기 기계**입니다. 인터넷 글을 읽으며 "다음 단어"를 맞히도록만 훈련됩니다.
-- 학습 글에서 "○○의 생일은" 뒤에는 거의 항상 날짜가 옵니다. "모르겠다"로 이어지는 글은 거의 없습니다. 그래서 처음 보는 사람의 생일을 물어도 가장 그럴듯한 다음 말은 **"그럴듯한 날짜"**입니다.
+- 학습 글에서 "○○의 생일은" 뒤에는 거의 항상 날짜가 옵니다. "모르겠다"로 이어지는 글은 거의 없습니다. 그래서 처음 보는 사람의 생일을 물어도 가장 그럴듯한 다음 말은 **"그럴듯한 날짜"** 입니다.
 - 학습 글에는 참·거짓 표시가 없어서, 모델은 "이건 내가 아는 사실인가"를 구분하는 법을 따로 배우지 않습니다. 수천 번 본 사실은 정확히 기억하지만, **한 번만 본 사실**은 흐릿한 흔적만 남아 지어낸 답과 구별되지 않습니다.
 
 ```mermaid
@@ -266,13 +266,13 @@ flowchart LR
 
 #### 자동 채점 강화학습(RLVR): 추론 모델 이후 비중이 커진 방식
 
-2024년 9월 OpenAI o1부터 추론 모델은 **"대규모 강화학습"**으로 생각하는 법을 배웠다고 발표됐습니다([OpenAI o1 발표 정리](https://simonwillison.net/2024/Sep/12/openai-o1/)). 이때 쓰는 채점기는 사람이 아니라 **수학 답 대조, 코드 테스트 통과 같은 자동 채점**입니다. 사람 평가보다 정확하고 대량으로 돌릴 수 있지만, 채점 기준이 "맞혔나/못 맞혔나"뿐이면 모르는 문제도 찍는 쪽이 이득입니다.
+2024년 9월 OpenAI o1부터 추론 모델은 **"대규모 강화학습"** 으로 생각하는 법을 배웠다고 발표됐습니다([OpenAI o1 발표 정리](https://simonwillison.net/2024/Sep/12/openai-o1/)). 이때 쓰는 채점기는 사람이 아니라 **수학 답 대조, 코드 테스트 통과 같은 자동 채점**입니다. 사람 평가보다 정확하고 대량으로 돌릴 수 있지만, 채점 기준이 "맞혔나/못 맞혔나"뿐이면 모르는 문제도 찍는 쪽이 이득입니다.
 
 실제로 이런 강화학습을 거치면 **풀 수 없는 문제에서 "모르겠다"고 답하는 비율이 80% 넘게 줄었고**, 학습 문제에 풀 수 없는 문제를 10%만 섞어 기권을 가르치면 정답률 손실 없이 상당 부분 회복됐습니다([Song et al., 2025](https://arxiv.org/abs/2505.13988)). 2025년 추론 모델(o3, o4-mini)의 환각률이 오히려 오른 것(발견 2)과 같은 방향입니다. 코딩 과제에서는 테스트를 통과시키려 기대값을 하드코딩하는 **보상 해킹**도 같은 구조에서 생깁니다.
 
 ### ④ 평가: 업계의 시험에는 오답 벌점이 없다
 
-이 단계는 학습 과정이 아니라 **완성된 모델을 비교하는 벤치마크(리더보드)**입니다. 하지만 개발사는 이 점수로 모델을 고르고 다음 학습 방향을 정하므로, **평가의 채점 방식이 결국 학습 방향을 좌우합니다**([Kalai et al., 2025](https://arxiv.org/abs/2509.04664)).
+이 단계는 학습 과정이 아니라 **완성된 모델을 비교하는 벤치마크(리더보드)** 입니다. 하지만 개발사는 이 점수로 모델을 고르고 다음 학습 방향을 정하므로, **평가의 채점 방식이 결국 학습 방향을 좌우합니다**([Kalai et al., 2025](https://arxiv.org/abs/2509.04664)).
 
 **핵심: 오답 벌점과 "확신의 문턱"은 문제가 아니라 해결책입니다. 문제는 지금 대부분의 시험에 벌점이 없어 문턱이 0%라는 점입니다.**
 
