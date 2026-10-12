@@ -199,7 +199,7 @@ env_key  = "GATEWAY_API_KEY"
 | 7 | 스킬 작성 | 코드 리뷰 체크리스트 스킬 | 5.4 |
 | 8 | 훅 작성 | 편집 후 포맷과 정적 분석 | 5.5 |
 | 9 | 서브에이전트 | 읽기 전용 검토자 정의와 실행 | 6.3 |
-| 10 | 비용 측정 | `/context`와 크레딧 대조 | 1.5, 4.8, 4.10 |
+| 10 | 비용 측정 | `/context`와 크레딧 대조 | 1.5, 4.8, 4.11 |
 | 11 | 패키징 | 위 자산을 플러그인으로 묶기 | 6.4 |
 | 12 | (선택) 첫 루프 | 검증 가능한 종료 조건 하나 돌려보기 | 부록 C.5 |
 
@@ -322,7 +322,7 @@ env_key  = "GATEWAY_API_KEY"
 - **수평 확장**: 평범한 라운드로빈 로드밸런서 뒤에 두면 된다. sticky 규칙이 필요 없다.
 - **장애 내성**: 인스턴스가 죽어도 다음 요청이 다른 인스턴스로 간다. 공유 세션 저장소가 필요 없다.
 - **표준 HTTP 인프라**: 헤더 기반 라우팅, 게이트웨이, 캐시를 그대로 쓴다.
-- **캐시 힌트**: 목록과 리소스 읽기 응답에 수명(`ttlMs`)과 범위(`cacheScope`)가 붙고(SEP-2549), 목록이 결정적 순서로 돌아와 상위의 prompt caching 적중률이 올라간다(4.9절과 직결된다).
+- **캐시 힌트**: 목록과 리소스 읽기 응답에 수명(`ttlMs`)과 범위(`cacheScope`)가 붙고(SEP-2549), 목록이 결정적 순서로 돌아와 상위의 prompt caching 적중률이 올라간다(4.10절과 직결된다).
 
 서버가 사용자에게 되묻는 기능(elicitation, sampling)은 열린 스트림 대신 여러 번의 왕복으로 뒤집혔다. 서버가 "입력이 필요하다"는 결과와 상태 토큰을 돌려주고, 클라이언트가 사용자에게 물어 같은 도구를 응답과 함께 다시 호출한다(SEP-2322). 상태 관리 책임이 전송 계층에서 애플리케이션 계층으로 옮겨가면서 인가 쪽도 강화됐다. 인가 서버가 `iss` 파라미터를 돌려주고 클라이언트가 그것을 검증하게 한 것(SEP-2468, RFC 9207)이 그 예다.
 
@@ -560,7 +560,7 @@ eval이 가장 먼저 쓸모를 보이는 자리가 **지침 다이어트**다(5
 | 간접 프롬프트 인젝션 (6.2) | 도구가 읽어 온 글에 심긴 지시를 모델이 따르게 만드는 공격 |
 | tool search (defer loading) (4.8) | 코딩 에이전트가 도구 정의를 필요할 때만 컨텍스트에 싣는 기능. MCP 문서의 progressive discovery(catalog → inspect → execute)가 같은 원리다 |
 | 서버 쪽 재설계 (4.6) | MCP 서버가 메타 도구 몇 개만 노출하도록 서버를 다시 만드는 방식. tool search와 구분해 부른다 |
-| prompt caching (4.9) | 같은 앞부분을 캐시해 할인 단가로 계산하는 기능. API 키 방식의 기본 수명은 5분이다 |
+| prompt caching (4.10) | 같은 앞부분을 캐시해 할인 단가로 계산하는 기능. API 키 방식의 기본 수명은 5분이다 |
 | Subagent (6.3) | 격리된 자기 컨텍스트에서 일하고 요약만 돌려주는 일꾼 |
 | Plugin (6.4) | 부품을 묶은 배포 단위 |
 | 권한 모드 (7.5) | 에이전트가 묻지 않고 할 수 있는 행동의 범위. Manual(`default`), `acceptEdits`, `plan`, `auto`, `dontAsk`, `bypassPermissions` |
@@ -640,6 +640,8 @@ eval이 가장 먼저 쓸모를 보이는 자리가 **지침 다이어트**다(5
 - Anthropic, Code execution with MCP — `search_tools` 방식: <https://www.anthropic.com/engineering/code-execution-with-mcp> (2025-11-04)
 - GitHub Docs, Loading tools on demand with tool search (Copilot CLI): <https://docs.github.com/en/copilot/concepts/agents/copilot-cli/tool-search> (2026-10)
 - opencode 문서, MCP servers: <https://opencode.ai/docs/mcp-servers/> (2026-10)
+- Codex 설정 참조 — `[mcp_servers.<id>]`, retired switches(`tool_search` 등): <https://learn.chatgpt.com/docs/config-file/config-reference> (2026-10)
+- Codex 문서, Model Context Protocol — 서버 instructions를 서버 전체 안내로 사용, 앞 512자 권고: <https://learn.chatgpt.com/docs/extend/mcp> (2026-10)
 
 ### 5~7장: 확장 부품과 셋업
 
