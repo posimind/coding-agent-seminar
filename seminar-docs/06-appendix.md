@@ -24,8 +24,8 @@
 
 | 기능 | 필요 버전 | 본문 |
 | --- | --- | --- |
-| `AGENTS.md` 직접 읽기 | v2.1.277 이상 | 3.4절, 5.2절 |
-| 일부 세션(Amazon Bedrock, 텔레메트리 끈 세션 등)에서도 `AGENTS.md` 직접 읽기 | v2.1.281 이상 | 3.4절 |
+| `AGENTS.md` 직접 읽기 | v2.1.277 이상 | 3.5절, 5.2절 |
+| 일부 세션(Amazon Bedrock, 텔레메트리 끈 세션 등)에서도 `AGENTS.md` 직접 읽기 | v2.1.281 이상 | 3.5절 |
 | `/context`에 직접 읽은 `AGENTS.md` 표시 | v2.1.280 이상 | 1.5절 |
 | `auto` 시작 모드 (대화형 터미널·VS Code) | v2.1.283 이상 | 7.5절 |
 | 서버별 `alwaysLoad: false` | v2.1.287 이상 | 4.8절 |
@@ -163,7 +163,7 @@ env_key  = "GATEWAY_API_KEY"
 | 모델 없음 | 모델 ID 오타, 조직 정책상 미허용 | 사용 가능 모델 목록을 조회합니다 |
 | 인증서 오류 | 사내 프록시의 TLS 검사 | CA 번들을 등록합니다 |
 | 캐시가 적중하지 않습니다 | 게이트웨이가 `cache_control`을 지웁니다 | `--output-format json`의 `usage` 또는 `/usage`의 `Prompt cache (main)` 행(v2.1.251 이상) |
-| `AGENTS.md`를 읽지 않습니다 | `CLAUDE.md`나 `CLAUDE.local.md`가 있습니다. 버전이 낮습니다. 게이트웨이 세션 | 시작 줄과 `/context`의 `Memory files` 확인(3.4절) |
+| `AGENTS.md`를 읽지 않습니다 | `CLAUDE.md`나 `CLAUDE.local.md`가 있습니다. 버전이 낮습니다. 게이트웨이 세션 | 시작 줄과 `/context`의 `Memory files` 확인(3.5절) |
 | 지침이 지켜지지 않습니다 | 로드되지 않았거나 압축으로 빠졌습니다 | `/context`로 로드 여부, 압축 발생 여부 확인(1.3절) |
 | 훅이 동작하지 않습니다 | 경로 오타나 스크립트 오류. 실패해도 통과됩니다 | 디버그 로그를 보고, 정책용 훅에는 `onFailure: "block"`을 겁니다(5.5절) |
 | TUI가 깨집니다 | 터미널 호환성 | `TERM` 확인, 다른 터미널로 재시도 |
@@ -174,7 +174,7 @@ env_key  = "GATEWAY_API_KEY"
 
 | 순서 | 할 일 | 확인 |
 | --- | --- | --- |
-| 1 | 도구를 고릅니다 | 고른 이유를 네 축으로 한 줄로 말할 수 있습니다(3.2절) |
+| 1 | 도구를 고릅니다 | 고른 이유를 한 줄로 말할 수 있습니다(3.1절의 선택 기준과 3.6절 점검표) |
 | 2 | 백엔드에 연결합니다 | `claude --version`, `claude -p "..."` (A.2) |
 | 3 | 권한을 설정합니다 | `/status`로 시작 모드와 규칙을 봅니다. 되돌릴 수 없는 명령이 `ask` 또는 `deny`에 있습니다 |
 | 4 | 지침 파일을 만듭니다 | `AGENTS.md` 하나, 200줄 아래 |
@@ -605,7 +605,51 @@ eval이 가장 먼저 쓸모를 보이는 자리가 **지침 다이어트**입�
 - OpenAI, Prompting guidance for GPT-5.6 Sol — "Simplify prompts first": 반복 지시·예시 삭제와 도구 설명 단순화, 얇은 프롬프트의 내부 평가 수치(점수 +10\~15%, 토큰 −41\~66%, 비용 −33\~67%, "directional"), 충돌하는 규칙의 위험, `ALWAYS`/`NEVER`는 불변에만, 한 묶음씩 지우고 같은 eval 재실행: <https://developers.openai.com/api/docs/guides/prompt-guidance-gpt-5p6> (2026-10)
 - OpenAI, Latest model prompting best practices (GPT-6 계열) — 더 긴 지시를 더 잘 따르지만 컨텍스트에 더 민감하다, 스킬과 `AGENTS.md` 감사 권고, 스킬 파일의 충돌이 작업을 멈추게 할 수 있음, Codex 이전 명령: <https://developers.openai.com/api/docs/guides/latest-model> (2026-10)
 
-### 3장: 도구 선택
+### 3장: 도구 지형
+
+**설문과 지형 (3.1, 3.4절)**
+
+- ADTmag, JetBrains Survey Finds AI Coding Agents Becoming Routine Developer Tools — 업무 사용률, 90%/68% 일상화: <https://adtmag.com/articles/jetbrains-survey-finds-ai-coding-agents-becoming-routine-developer-tools.aspx> (2026-08-27)
+- AI Understanding, 36Kr reports Claude Code led GitHub Copilot in JetBrains' 2026 developer survey: <https://aiunderstanding.org/news/36kr-reports-claude-code-led-github-copilot-in-jetbrains-2026-developer-survey> (2026-10)
+- Visual Studio Magazine, Stack Overflow 2026 Survey — 유효 응답 30,903건, 해당 문항 12,255명: <https://visualstudiomagazine.com/articles/2026/10/06/stack-overflow-2026-survey-vs-code-leads-visual-studio-takes-third.aspx> (2026-10-06)
+- Stack Overflow Blog, The results of the 2026 Developer Survey: <https://stackoverflow.blog/2026/10/06/the-results-of-the-2026-developer-survey-are-here/> (2026-10-06)
+- The Pragmatic Engineer, AI Tooling for Software Engineers in 2026 — 906명, 2026년 1\~2월. 선호도·조달 정책·70% 병행: <https://newsletter.pragmaticengineer.com/p/ai-tooling-2026> (2026-10)
+- IT Brief, Stack Overflow survey finds developers wary of AI tools — 검증 가능성과 출처 표시 78.7%: <https://itbrief.co.uk/story/stack-overflow-survey-finds-developers-wary-of-ai-tools> (2026-10)
+
+**하네스가 경쟁축이 된 배경 (3.1절)**
+
+- Faros AI, Harness engineering: What makes AI coding agents work in 2026 — Terminal Bench 2.0 30위→5위: <https://www.faros.ai/blog/harness-engineering> (2026-10)
+- The New Stack, Cursor's $60 billion bet is on the harness, not the model: <https://thenewstack.io/cursor-sdk-harness/> (2026-10)
+- The Next Web, The AI coding fight just moved from the model to the harness — 토큰 단가와 기업 청구액: <https://thenextweb.com/news/cursor-price-hikes-claude-code-harness-shift> (2026-10)
+- SoftwareSeni, Build or Buy a Coding Agent Harness — 사내 하네스 구축: <https://www.softwareseni.com/build-or-buy-a-coding-agent-harness-and-what-ownership-really-costs/> (2026-10)
+- Morph, Kilo Code vs OpenCode · Kilo Code vs Cline — 포크 계보: <https://www.morphllm.com/comparisons/kilo-code-vs-opencode> · <https://www.morphllm.com/comparisons/kilo-code-vs-cline> (2026-10)
+
+**오픈소스 하네스와 스타 수 (3.3절)** — 스타는 2026-10-13 조회값이고, 6주 증가 폭의 기준인 8월 29일 수치는 Pinggy 집계입니다.
+
+- Pinggy, Best Open Source CLI Coding Agents in 2026 — 8월 29일 기준 집계, Pi 시스템 프롬프트 1,000토큰 미만, 스타 해석 주의: <https://pinggy.io/blog/best_open_source_cli_coding_agents/> (2026-08-28 업데이트)
+- GitHub 저장소 (모두 2026-10-13 조회): OpenCode <https://github.com/anomalyco/opencode> · Pi <https://github.com/earendil-works/pi> · OpenHands <https://github.com/OpenHands/OpenHands> · Cline <https://github.com/cline/cline> · Goose <https://github.com/aaif-goose/goose> · Kilo Code <https://github.com/Kilo-Org/kilocode>
+- GitHub 저장소, 모델 회사 CLI (모두 2026-10-13 조회): DeepSeek Harness <https://github.com/deepseek-ai/deepseek-harness> · Codex CLI <https://github.com/openai/codex> · Qwen Code <https://github.com/QwenLM/qwen-code> · Grok Build <https://github.com/xai-org/grok-build>
+- wetheflywheel, OpenCode vs Roo Code vs Cline — Cline의 VPC·에어갭 등급, Roo Code 아카이브, 기여자 수: <https://wetheflywheel.com/en/comparisons/opencode-vs-roo-code-vs-cline/> (2026-10)
+- eesel, Pi coding agent explained: <https://www.eesel.ai/blog/pi-coding-agent> (2026-10-07)
+- DEV Community, OpenCode: The Open Source Coding Agent That Doesn't Lock You In — 기본 권한 범위 지적: <https://dev.to/playfulprogramming/opencode-the-open-source-coding-agent-that-doesnt-lock-you-in-pn3> (2026-10)
+
+**벤더 정책 리스크와 공급 변동 (3.3, 3.4절)**
+
+- The New Stack, Why 157,000 developers are hedging against Anthropic with OpenCode: <https://thenewstack.io/anthropic-claudecode-opencode-split/> (2026-10)
+- falcao.org, Anthropic's Third-Party Claude Crackdown — 2026-01-09 차단과 04-04 확대, OpenAI의 서드파티 제휴: <https://falcao.org/posts/anthropic-claude-access-crackdown-ecosystem-fallout/> (2026-10)
+- VentureBeat, Anthropic cracks down on unauthorized Claude usage by third-party harnesses: <https://venturebeat.com/ai/anthropic-cracks-down-on-unauthorized-claude-usage-by-third-party-harnesses/> (2026-10)
+- InventiveHQ, Gemini CLI Is Being Retired on June 18: <https://inventivehq.com/blog/gemini-cli-deprecated-antigravity-cli-migration> (2026-10)
+- tbreak, OpenAI cuts off Cursor after SpaceX acquisition: <https://tbreak.com/openai-cuts-off-cursor-spacex-acquisition/> (2026-10)
+- JOPR, OpenAI will cut Cursor's access to its models — 트래픽 약 5%: <https://jopr.org/news/detail/openai-will-cut-cursors-access> (2026-10)
+- heise, Price hike for AI coding tools: The Free Lunch Is Over — 한도 도입의 불투명성: <https://www.heise.de/en/background/Price-hike-for-AI-coding-tools-The-Free-Lunch-Is-Over-10511480.html?seite=all> (2026-10)
+
+**도구별 강점 (3.2절)** — 측정값이 아니라 제품 비교·집계 글입니다. 본문에서도 약한 근거로 표시했습니다.
+
+- Fungies, 7 Best AI Coding Agents for Developers in 2026: <https://fungies.io/?p=37687> (2026-10)
+- Morph, 14 Best AI Coding Agents in 2026: <https://www.morphllm.com/best-ai-coding-agents-2026> (2026-10)
+- Toolhalla, Windsurf vs Google Antigravity: <https://toolhalla.ai/compare/windsurf-vs-google-antigravity> (2026-10)
+
+**도구 문서 (3.2, 3.5절)**
 
 - VS Code 문서, Understand agent harnesses: <https://code.visualstudio.com/docs/agents/concepts/agent-harnesses> (2026-10)
 - VS Code 문서, AI settings reference — `chat.agent.maxRequests`: <https://code.visualstudio.com/docs/agents/reference/ai-settings> (2026-10)
