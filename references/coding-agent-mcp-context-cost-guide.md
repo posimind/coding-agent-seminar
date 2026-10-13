@@ -13,7 +13,7 @@
 - prompt caching으로 반복 부분은 싸게(캐시 읽기) 처리되지만, 캐시는 **마지막 호출 후 5분**이 지나면 만료된다. 사용자가 다음 요청을 5분 넘게 고민하거나, 빌드·테스트가 5분 넘게 걸리면 고정 영역 전체를 다시 비싼 단가(캐시 쓰기)로 기록한다.
 - Opus 5.5 기준 계산 결과, 기본 컨텍스트가 4%인 세션과 12%인 세션은 **작업당 약 $0.83(+21%) 차이**가 나고, 월 $600 예산으로 처리할 수 있는 작업이 약 153건 → 126건으로 줄어든다.
 - 근본 해결은 MCP 서버를 컨텍스트 효율적으로(3계층) 설계하는 것이지만, 대부분 남이 만든 MCP를 쓰므로 현실적이지 않다.
-- 대신 **클라이언트 쪽 defer loading(tool search)** 을 켜면, 도구 이름만 미리 싣고 필요한 도구만 그때 불러온다. 같은 계산에서 12% 세션의 비용이 4% 세션 수준(약 $3.96~$4.00)으로 내려간다.
+- 대신 **클라이언트 쪽 defer loading(tool search)** 을 켜면, 도구 이름만 미리 싣고 필요한 도구만 그때 불러온다. 같은 계산에서 12% 세션의 비용이 4% 세션 수준(약 $3.96\~$4.00)으로 내려간다.
 
 ---
 
@@ -188,7 +188,7 @@ MCP 서버가 연결되면 클라이언트는 서버와 두 번의 교환을 한
 }
 ```
 
-이런 도구 하나가 대략 300~800 토큰이고, 서버당 수십 개씩 있다.
+이런 도구 하나가 대략 300\~800 토큰이고, 서버당 수십 개씩 있다.
 
 **모델이 실제로 받는 컨텍스트: defer 끔 vs 켬**
 
@@ -239,7 +239,7 @@ MCP 서버가 연결되면 클라이언트는 서버와 두 번의 교환을 한
 |---|---|---|---|
 | 시스템 프롬프트, built-in 도구 | 전체 | 에이전트 공급자가 최소화해 둠 | 고정 |
 | Memory (CLAUDE.md) | 전체 | 사용자가 직접 씀 | 사용자가 쓴 만큼 |
-| Skills | **이름과 description만** (본문은 호출 시) | skill 작성자, 단 본문은 기본 비용 아님 | skill 1개당 수십~백여 토큰 |
+| Skills | **이름과 description만** (본문은 호출 시) | skill 작성자, 단 본문은 기본 비용 아님 | skill 1개당 수십\~백여 토큰 |
 | **MCP** | **모든 도구의 전체 스키마** | **서드파티 서버 작성자** | 서버 수 × 도구 수 × 스키마 크기 |
 
 1. **로딩 단위가 가장 크다.** Skills는 처음부터 "목차(이름 + 한 줄 설명)만 싣고 본문은 필요할 때 읽는" progressive disclosure 구조다. 반면 MCP는 프로토콜상 `tools/list`가 모든 도구의 전체 스키마를 한 번에 돌려주고, 클라이언트는 이를 그대로 모델에 넘긴다(defer loading이 없다면).
@@ -252,7 +252,7 @@ MCP 서버가 연결되면 클라이언트는 서버와 두 번의 교환을 한
 
 | 원인 | 설명 |
 |---|---|
-| API 엔드포인트 = 도구 1개 | 많은 MCP 서버가 기존 REST API를 그대로 감싸서, 엔드포인트마다 도구를 하나씩 만든다. GitHub, Jira, Slack 같은 서버는 도구가 수십~백 개를 넘는다 |
+| API 엔드포인트 = 도구 1개 | 많은 MCP 서버가 기존 REST API를 그대로 감싸서, 엔드포인트마다 도구를 하나씩 만든다. GitHub, Jira, Slack 같은 서버는 도구가 수십\~백 개를 넘는다 |
 | 상세한 description | 모델이 정확히 고르도록 설명을 길게 쓴다. 이 자체는 좋은 일이지만 토큰을 차지한다 |
 | 복잡한 JSON Schema | 중첩 객체, enum, 파라미터별 설명이 모두 토큰이다 |
 | 서버 instructions | 서버가 제공하는 사용 안내문도 함께 실린다 |
@@ -261,7 +261,7 @@ MCP 서버가 연결되면 클라이언트는 서버와 두 번의 교환을 한
 참고 수치:
 
 - Anthropic API 문서: GitHub, Slack, Sentry, Grafana, Splunk를 함께 쓰는 구성은 작업 시작 전에 **약 55K 토큰**을 도구 정의로 소비할 수 있다.
-- Agent SDK 문서: 도구 50개는 **10~20K 토큰**을 쓴다. 또 도구가 30~50개를 넘으면 **도구 선택 정확도도 떨어진다.**
+- Agent SDK 문서: 도구 50개는 **10\~20K 토큰**을 쓴다. 또 도구가 30\~50개를 넘으면 **도구 선택 정확도도 떨어진다.**
 
 즉 MCP가 많아질수록 "아무것도 안 하는데 드는 비용"과 "잘못된 도구를 고를 위험"이 함께 커진다.
 
@@ -420,7 +420,7 @@ def execute_tool(name: str, args: dict) -> dict:
 ```
 
 - 대기 상태의 컨텍스트: 도구 수십 개(수만 토큰) → 메타 도구 3개(수백 토큰)
-- 대가: 발견과 조회에 왕복이 1~2회 추가되고, `args: dict`라서 클라이언트 쪽 스키마 검증과 도구 단위 권한 제어가 약해진다.
+- 대가: 발견과 조회에 왕복이 1\~2회 추가되고, `args: dict`라서 클라이언트 쪽 스키마 검증과 도구 단위 권한 제어가 약해진다.
 
 ### 5.3 현실적인 한계
 
@@ -671,7 +671,7 @@ claude
 
 - [Connect Claude Code to tools via MCP](https://code.claude.com/docs/en/mcp) — tool search 설정, `ENABLE_TOOL_SEARCH`, `alwaysLoad`, base URL 조건
 - [Connect to external tools with MCP (Agent SDK)](https://code.claude.com/docs/en/agent-sdk/mcp) — `.mcp.json`과 `settingSources`
-- [Scale to many tools with tool search (Agent SDK)](https://code.claude.com/docs/en/agent-sdk/tool-search) — 로딩 유지와 compaction, 50개 도구 10~20K 토큰
+- [Scale to many tools with tool search (Agent SDK)](https://code.claude.com/docs/en/agent-sdk/tool-search) — 로딩 유지와 compaction, 50개 도구 10\~20K 토큰
 - [Tool search tool (Claude API)](https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool) — 검색 대상 필드, `tool_reference`, 캐시 보존, 55K 예시
 - [MCP 모범 사례: 아키텍처 & 구현 가이드](https://modelcontextprotocol.info/ko/docs/best-practices/)
 - [에이전트를 위한 효과적인 도구 작성: MCP 개발 완전 가이드](https://modelcontextprotocol.info/ko/docs/tutorials/writing-effective-tools/)

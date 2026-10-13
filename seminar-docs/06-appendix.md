@@ -1,6 +1,6 @@
 # 부록
 
-> 범위: 부록 A~E · 기준 시점: 2026년 10월
+> 범위: 부록 A\~E · 기준 시점: 2026년 10월
 
 부록은 본문의 흐름을 끊지만 실제로 손을 움직일 때 필요한 것들을 모아 둔 곳입니다.
 
@@ -83,7 +83,7 @@ ENABLE_TOOL_SEARCH=auto:5 claude    # 임계값 5%
 | (설정 안 함) | 모든 MCP 도구를 미룹니다. 단 `ANTHROPIC_BASE_URL`이 자사 것이 아닌 호스트이거나, Microsoft Foundry(Azure) 배포, Google Cloud Agent Platform의 Claude 4.5 이전 세대 모델이면 전부 미리 싣습니다 |
 | `true` | 모든 MCP 도구를 미룹니다. 프록시에도 베타 헤더를 보내므로, 프록시가 `tool_reference` 블록을 지원하지 않으면 요청이 실패합니다 |
 | `auto` | 미룰 수 있는 정의의 합이 컨텍스트 윈도우의 10% 미만이면 미리 싣고, 10%에 이르면 전부 미룹니다 |
-| `auto:N` | 임계값을 N%(0~100)로 정합니다 |
+| `auto:N` | 임계값을 N%(0\~100)로 정합니다 |
 | `false` | 전부 미리 싣습니다 |
 
 (출처: [Claude Code 문서, Configure tool search](https://code.claude.com/docs/en/mcp#configure-tool-search), 2026-10 확인)
@@ -186,7 +186,7 @@ env_key  = "GATEWAY_API_KEY"
 
 ## 부록 B. 핸즈온 랩
 
-사내 리포지토리의 축소판으로 진행합니다. 각 랩은 앞 랩의 결과 위에 쌓입니다. 1~5번만 해도 혼자서 쓸 수 있는 환경이 됩니다.
+사내 리포지토리의 축소판으로 진행합니다. 각 랩은 앞 랩의 결과 위에 쌓입니다. 1\~5번만 해도 혼자서 쓸 수 있는 환경이 됩니다.
 
 | # | 주제 | 산출물 | 관련 절 |
 | --- | --- | --- | --- |
@@ -269,7 +269,7 @@ env_key  = "GATEWAY_API_KEY"
 ### 랩 11. 패키징
 
 - **목표**: 자산을 두 번째 저장소로 옮깁니다.
-- **하는 일**: 랩 7~9의 산출물을 플러그인 한 디렉터리로 묶고 다른 저장소에 설치합니다.
+- **하는 일**: 랩 7\~9의 산출물을 플러그인 한 디렉터리로 묶고 다른 저장소에 설치합니다.
 - **완료 조건**: 새 저장소에서 스킬과 서브에이전트가 보이고, 훅이 돕니다.
 
 ### 랩 12. (선택) 첫 루프
@@ -412,7 +412,7 @@ print(avg(40_000), avg(120_000))   # 3.93, 4.76
 
 **최소 세트**는 다음 셋으로 만듭니다.
 
-1. 실제 저장소에서 뽑은 대표 과제 5~10개.
+1. 실제 저장소에서 뽑은 대표 과제 5\~10개.
 2. 과제마다 **자동으로 판정되는 성공 조건**(테스트 통과, 특정 심볼 존재, 정적 분석 무경고).
 3. 각 과제 3회 반복. 모델은 비결정적입니다.
 
@@ -424,7 +424,7 @@ print(avg(40_000), avg(120_000))   # 3.93, 4.76
 | 소요 시간 | 벽시계 기준 |
 | 회귀 발생 | 기존 테스트를 깬 비율 |
 
-eval이 가장 먼저 쓸모를 보이는 자리가 **지침 다이어트**입니다(5.2절). 지시를 한 묶음 지운 뒤 같은 과제 세트를 다시 돌리면, 줄인 것이 손해였는지 아닌지가 숫자로 나옵니다. 두 회사가 공개한 수치(80% 삭제에도 측정 가능한 손실 없음, 얇은 프롬프트에서 점수 10~15% 상승)도 모두 자사 평가 세트로 잰 값입니다. 같은 방법을 우리 저장소에서 쓰는 것이 이 절의 내용입니다.
+eval이 가장 먼저 쓸모를 보이는 자리가 **지침 다이어트**입니다(5.2절). 지시를 한 묶음 지운 뒤 같은 과제 세트를 다시 돌리면, 줄인 것이 손해였는지 아닌지가 숫자로 나옵니다. 두 회사가 공개한 수치(80% 삭제에도 측정 가능한 손실 없음, 얇은 프롬프트에서 점수 10\~15% 상승)도 모두 자사 평가 세트로 잰 값입니다. 같은 방법을 우리 저장소에서 쓰는 것이 이 절의 내용입니다.
 
 판정은 생성자와 분리합니다(6.3절). 그리고 한 번 일어난 실패는 eval 세트에 추가합니다. eval을 CI에 넣어 지침과 플러그인이 바뀔 때 자동으로 돌리면, 2.4절의 제1원칙이 조직 단위로 구현됩니다.
 
@@ -436,7 +436,7 @@ eval이 가장 먼저 쓸모를 보이는 자리가 **지침 다이어트**입�
 | --- | --- | --- |
 | 결정적 검증 | 성공과 실패를 사람 없이 판정할 수 있나요 | 14.3, C.4 |
 | 빠른 피드백 층 | 그 판정이 분 단위로 끝나나요 | 14.3 |
-| 하네스 | 지침·훅·스킬이 팀 자산으로 관리되나요 | 5~7장 |
+| 하네스 | 지침·훅·스킬이 팀 자산으로 관리되나요 | 5\~7장 |
 
 빌드가 20분인 상태에서 루프를 돌리면 하룻밤에 몇십 사이클밖에 돌지 못합니다. 호스트 빌드 층을 만드는 일이 루프 도입의 실질적 선행 과제입니다.
 
@@ -590,7 +590,7 @@ eval이 가장 먼저 쓸모를 보이는 자리가 **지침 다이어트**입�
 
 장 번호 순으로 모았습니다. 괄호 안은 확인 시점입니다. 공식 문서는 자주 바뀌므로, 인용한 문장이 아직 그대로인지 발표 전에 다시 엽니다.
 
-### 0~2장: 원리와 하네스
+### 0\~2장: 원리와 하네스
 
 - Claude API 문서, Tool use with Claude — `tool_use`/`tool_result` 규격과 도구 정의의 과금: <https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview> (2026-10)
 - Claude Code 문서, Explore the context window — 윈도우 크기와 압축 뒤에 남는 것: <https://code.claude.com/docs/en/context-window> (2026-10)
@@ -602,7 +602,7 @@ eval이 가장 먼저 쓸모를 보이는 자리가 **지침 다이어트**입�
 - Anthropic, Effective context engineering for AI agents: <https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents> (2025-09-29)
 - Addy Osmani, Loop Engineering — 루프의 명명, Steinberger·Cherny 인용: <https://addyosmani.com/blog/loop-engineering/> (2026-06-07)
 - Anthropic, The new rules of context engineering for Claude 5 generation models — 시스템 프롬프트 80% 삭제와 여섯 가지 전환: <https://claude.com/blog/the-new-rules-of-context-engineering-for-claude-5-generation-models> (2026-07-24)
-- OpenAI, Prompting guidance for GPT-5.6 Sol — "Simplify prompts first": 반복 지시·예시 삭제와 도구 설명 단순화, 얇은 프롬프트의 내부 평가 수치(점수 +10~15%, 토큰 −41~66%, 비용 −33~67%, "directional"), 충돌하는 규칙의 위험, `ALWAYS`/`NEVER`는 불변에만, 한 묶음씩 지우고 같은 eval 재실행: <https://developers.openai.com/api/docs/guides/prompt-guidance-gpt-5p6> (2026-10)
+- OpenAI, Prompting guidance for GPT-5.6 Sol — "Simplify prompts first": 반복 지시·예시 삭제와 도구 설명 단순화, 얇은 프롬프트의 내부 평가 수치(점수 +10\~15%, 토큰 −41\~66%, 비용 −33\~67%, "directional"), 충돌하는 규칙의 위험, `ALWAYS`/`NEVER`는 불변에만, 한 묶음씩 지우고 같은 eval 재실행: <https://developers.openai.com/api/docs/guides/prompt-guidance-gpt-5p6> (2026-10)
 - OpenAI, Latest model prompting best practices (GPT-6 계열) — 더 긴 지시를 더 잘 따르지만 컨텍스트에 더 민감하다, 스킬과 `AGENTS.md` 감사 권고, 스킬 파일의 충돌이 작업을 멈추게 할 수 있음, Codex 이전 명령: <https://developers.openai.com/api/docs/guides/latest-model> (2026-10)
 
 ### 3장: 도구 선택
@@ -634,7 +634,7 @@ eval이 가장 먼저 쓸모를 보이는 자리가 **지침 다이어트**입�
 - MCP 문서, Client Best Practices — progressive discovery, 호스트가 정의 주입을 미룬다, 플랫폼의 tool search 우선: <https://modelcontextprotocol.io/docs/2026-07-28/develop/clients/client-best-practices> (2026-10)
 - Claude Code 문서, Scale with MCP tool search / Configure tool search: <https://code.claude.com/docs/en/mcp#scale-with-mcp-tool-search> · <https://code.claude.com/docs/en/mcp#configure-tool-search> (2026-10)
 - Agent SDK 문서, Tool search: <https://code.claude.com/docs/en/agent-sdk/tool-search> (2026-10)
-- Claude API 문서, Tool search tool — 도구 30~50개 이상에서 선택 정확도 저하: <https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool> (2026-10)
+- Claude API 문서, Tool search tool — 도구 30\~50개 이상에서 선택 정확도 저하: <https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool> (2026-10)
 - Anthropic, Introducing advanced tool use — 다섯 서버 58개 도구 약 55K 토큰, MCP 평가 정확도 변화: <https://www.anthropic.com/engineering/advanced-tool-use> (2025-11-24)
 - Anthropic, Writing effective tools for agents: <https://www.anthropic.com/engineering/writing-tools-for-agents> (2025-09-11)
 - Anthropic, Code execution with MCP — `search_tools` 방식: <https://www.anthropic.com/engineering/code-execution-with-mcp> (2025-11-04)
@@ -643,7 +643,7 @@ eval이 가장 먼저 쓸모를 보이는 자리가 **지침 다이어트**입�
 - Codex 설정 참조 — `[mcp_servers.<id>]`, retired switches(`tool_search` 등): <https://learn.chatgpt.com/docs/config-file/config-reference> (2026-10)
 - Codex 문서, Model Context Protocol — 서버 instructions를 서버 전체 안내로 사용, 앞 512자 권고: <https://learn.chatgpt.com/docs/extend/mcp> (2026-10)
 
-### 5~7장: 확장 부품과 셋업
+### 5\~7장: 확장 부품과 셋업
 
 - Claude Code 문서, Extend Claude Code — 부품별 컨텍스트 비용, 요청과 강제의 차이, 도입 순서: <https://code.claude.com/docs/en/features-overview> (2026-10)
 - Claude Code 문서, Audit your instruction files — `/doctor prompt-audit`의 검사 대상과 범위, v2.1.283 이상: <https://code.claude.com/docs/en/memory#audit-your-instruction-files> (2026-10)
@@ -668,7 +668,7 @@ eval이 가장 먼저 쓸모를 보이는 자리가 **지침 다이어트**입�
 - MCP Python SDK 문서: <https://py.sdk.modelcontextprotocol.io/> (2026-10)
 - 사내망에서 공식 사이트에 접근할 수 없을 때의 미러: <https://github.com/posimind/claude-code-docs/blob/main/docs/memory.md> · <https://github.com/posimind/claude-code-docs/blob/main/docs/skills.md>
 
-### 8~9장: HITL과 컨텍스트 한계
+### 8\~9장: HITL과 컨텍스트 한계
 
 - Claude Code 문서, Choose a permission mode: <https://code.claude.com/docs/en/permission-modes> (2026-10)
 - Addy Osmani, Loop Engineering — 루프가 사람을 지우지 않는다, 검증은 사람 몫: <https://addyosmani.com/blog/loop-engineering/> (2026-06-07)
@@ -716,7 +716,7 @@ eval이 가장 먼저 쓸모를 보이는 자리가 **지침 다이어트**입�
 - Claude Code 문서, Best practices — 의도는 추론하지만 마음을 읽지는 못한다, 인터뷰 프롬프트: <https://code.claude.com/docs/en/best-practices> (2026-10)
 - mattpocock/skills — `grill-me`, `grill-with-docs`의 인터뷰 규칙: <https://github.com/mattpocock/skills> (2026-10-12 확인, 인터뷰 규칙 파일 최종 수정 2026-10-07)
 
-### 13~15장: 설계와 개발자
+### 13\~15장: 설계와 개발자
 
 - Amazon, 2015 Letter to Shareholders — 양방향 문과 일방통행 문: <https://www.sec.gov/Archives/edgar/data/1018724/000119312516530910/d168744dex991.htm> (2016-04)
 - Claude Code 문서, Security — 승인 피로, 네트워크 명령의 기본 동작: <https://code.claude.com/docs/en/security> (2026-10)
